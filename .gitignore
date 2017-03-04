@@ -3,6 +3,7 @@
 /bin/
 target/
 test-output/
+
  
 # OS Files #
 .DS_Store
@@ -74,7 +75,7 @@ local.properties
 MCT/.idea/*
 MCT/*.iml
 .idea/*
-MCT/out/*
+out/*
 Packages/.idea/*
 Packages/jira/*.iml
 Packages/tfs/*.iml

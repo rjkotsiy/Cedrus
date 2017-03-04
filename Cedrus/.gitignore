@@ -1,0 +1,84 @@
+# Directories #
+/build/
+/bin/
+target/
+test-output/
+ 
+# OS Files #
+.DS_Store
+ 
+*.class
+ 
+# Package Files #
+*.war
+*.ear
+*.db
+ 
+######################
+# Windows
+######################
+ 
+# Windows image file caches
+Thumbs.db 
+ 
+# Folder config file
+Desktop.ini
+ 
+######################
+# OSX
+######################
+  
+# Thumbnails
+._*
+  
+ 
+######################
+# Eclipse
+######################
+ 
+*.pydevproject
+.recommenders
+.metadata
+**/.history
+**/.classpath
+tmp/**
+tmp/**/*
+
+
+MCT/bin/*
+MCT/build/*
+MCT/profiles/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.log
+local.properties
+
+# External tool builders
+.externalToolBuilders/
+ 
+# Locally stored "Eclipse launch configurations"
+*.launch
+ 
+# CDT-specific
+.cproject
+ 
+# PDT-specific
+.buildpath
+/MCT/bin
+
+######################
+# IntelliJ IDEA
+######################
+MCT/.idea/*
+MCT/*.iml
+.idea/*
+MCT/out/*
+Packages/.idea/*
+Packages/jira/*.iml
+Packages/tfs/*.iml
+*.iml
+*.idea
+Packages/sonarqube/src/META-INF/MANIFEST.MF
+MCT/backup/*

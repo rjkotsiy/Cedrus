@@ -1,0 +1,6 @@
+.label {
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 7.0, 0, 0, 0;
+    /*-fx-background-color: rgba(240.0, 240.0, 240.0, 0.5);*/
+}

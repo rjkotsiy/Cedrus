@@ -1,0 +1,121 @@
+.text-field {
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 7.0, 0, 0, 0;
+    -fx-background-color: rgba(240.0, 240.0, 240.0, 0.5);
+    -fx-border-color: rgb(215, 223, 229);
+	-fx-border-radius: 3px;
+}
+
+.text-field:hover {
+    -fx-border-radius: 3px;
+    -fx-border-color: rgb(140, 151, 161);
+}
+
+.text-field:focused {
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-border-color: rgb(0, 180, 213);
+    -fx-border-radius: 3px;
+}
+
+.text-field:disabled {
+     -fx-opacity: 0.5;
+}
+
+.warning {
+    -fx-background-size: 18px;
+    -fx-border-color: rgb(255, 133, 0, 0.4);
+}
+
+.warning:focused {
+    -fx-border-color: rgb(255, 133, 0, 1);
+    -fx-border-opacity: 1;
+}
+
+.warning:hover {
+    -fx-border-color: rgb(255, 133, 0, 0.7);
+    -fx-border-opacity: 0.7;
+}
+
+.duplicated {
+    -fx-background-image:url('../../../../../resources/warning.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right center;
+    -fx-background-size: 18px;
+    -fx-border-color: rgb(255, 133, 0, 0.4);
+}
+
+.duplicated:focused {
+    -fx-border-color: rgb(255, 133, 0, 1);
+    -fx-border-opacity: 1;
+}
+
+.duplicated:hover {
+    -fx-border-color: rgb(255, 133, 0, 0.7);
+    -fx-border-opacity: 0.7;
+}
+
+
+.duplicated:hover {
+    -fx-border-color: rgb(255, 133, 0, 0.7);
+    -fx-border-opacity: 0.7;
+}
+
+.required {
+    -fx-border-color: rgb(208, 2, 27);
+    -fx-border-opacity: 1;
+    -fx-prompt-text-fill: rgb(208, 2, 27);
+}
+
+.required:focused {
+    -fx-border-color: rgb(175, 0, 22);  
+    -fx-border-opacity: 0.8;
+    -fx-prompt-text-fill: transparent;
+}
+.required:focused:hover {
+    -fx-border-color: rgb(175, 0, 22);  
+    -fx-border-opacity: 0.8;
+    -fx-prompt-text-fill: transparent;
+}
+
+.required:hover {
+    -fx-border-color: rgb(175, 0, 22);
+    -fx-border-opacity: 0.8;
+    -fx-prompt-text-fill:  rgb(208, 2, 27);
+}
+
+.read-only {
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 7.0, 0, 0, 0;
+    -fx-background-color: white;
+    -fx-border-color: white;
+	-fx-border-radius: 3px;
+}
+
+.read-only:hover {
+   -fx-background-insets: 0.0;
+   -fx-background-radius: 0.0;
+   -fx-padding: 7.0, 0, 0, 0;
+   -fx-background-color: white;
+   -fx-border-color: white;
+   -fx-border-radius: 3px;
+}
+
+.read-only:focused {
+   -fx-background-insets: 0.0;
+   -fx-background-radius: 0.0;
+   -fx-padding: 7.0, 0, 0, 0;
+   -fx-background-color: white;
+   -fx-border-color: white;
+   -fx-border-radius: 3px;
+}
+
+.read-only:disabled {
+   -fx-background-insets: 0.0;
+   -fx-background-radius: 0.0;
+   -fx-padding: 7.0, 0, 0, 0;
+   -fx-background-color: white;
+   -fx-border-color: white;
+   -fx-border-radius: 3px;
+}

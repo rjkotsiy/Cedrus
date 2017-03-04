@@ -1,0 +1,22 @@
+.radio-button .radio {
+    -fx-border-width: 2px;
+    -fx-border-color: #63666e;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 1.0em;
+    -fx-padding: 3px;
+}
+
+.radio-button .dot {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 5px;
+    -fx-shape: "M11,1.5L9.5,0l-5,5.1c-1-1-2-2.1-3-3.1L0,3.5C1.5,5,3,6.4,4.5,7.9C5,7.4,5.4,7,5.9,6.5l0,0L11,1.5z";
+}
+
+.radio-button:selected > .radio {
+   -fx-background-color: #00b4d5;
+   -fx-border-width: 2px;
+   -fx-border-color: #00b4d5;
+   -fx-background-insets: 0 0 -1 0, 0;
+}

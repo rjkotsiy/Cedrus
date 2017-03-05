@@ -1,4 +1,4 @@
-package com.cedrus.main.loader;
+package com.cedrus.main.mainloader;
 
 import com.cedrus.Main;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Loader {
+public class MainStageLoader {
 
     public void loadMainStage(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));

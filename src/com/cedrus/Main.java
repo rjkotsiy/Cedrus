@@ -1,6 +1,6 @@
 package com.cedrus;
 
-import com.cedrus.main.loader.Loader;
+import com.cedrus.main.mainloader.MainStageLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Loader mainLoader = new Loader();
+        MainStageLoader mainLoader = new MainStageLoader();
         mainLoader.loadMainStage(primaryStage);
     }
 

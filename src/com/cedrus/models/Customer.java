@@ -1,10 +1,12 @@
 package com.cedrus.models;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Customer {
 
     private Integer id;
     private String firstName;
-    private String lastname;
+    private String lastName;
     private String address;
     private String phone;
     private String birthday;
@@ -23,16 +25,20 @@ public class Customer {
         return firstName;
     }
 
+    public SimpleStringProperty getNameProperty() {
+        return new SimpleStringProperty(firstName + " " + lastName);
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -45,6 +51,10 @@ public class Customer {
 
     public String getPhone() {
         return phone;
+    }
+
+    public SimpleStringProperty getPhoneProperty() {
+        return new SimpleStringProperty(phone);
     }
 
     public void setPhone(String phone) {

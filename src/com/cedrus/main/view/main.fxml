@@ -9,15 +9,16 @@
 
 <AnchorPane fx:id="mainAnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedrus.main.controller.MainController">
    <children>
-      <TableView layoutX="14.0" layoutY="66.0" prefHeight="516.0" prefWidth="505.0" stylesheets="@css/customertable.css">
+      <TableView fx:id="customersTable" layoutX="14.0" layoutY="66.0" prefHeight="516.0" prefWidth="625.0" stylesheets="@css/customertable.css">
         <columns>
-          <TableColumn prefWidth="112.0" text="Имя Фамилия" />
-          <TableColumn prefWidth="77.0" text="Телефон" />
-            <TableColumn prefWidth="103.0" text="Дата осмотра" />
-            <TableColumn prefWidth="193.0" text="Дата следующего осмотра" />
+          <TableColumn fx:id="customerName" editable="false" prefWidth="130.0" text="Patient name" />
+          <TableColumn fx:id="phone" editable="false" prefWidth="108.0" sortable="false" text="Phone" />
+            <TableColumn fx:id="lastExaminationDate" editable="false" prefWidth="179.0" sortable="false" text="Last date of examination" />
+            <TableColumn fx:id="nextExaminationDate" editable="false" prefWidth="181.0" sortable="false" text="Next date of examination" />
+            <TableColumn fx:id="customerMenu" editable="false" prefWidth="20.0" sortable="false" />
         </columns>
       </TableView>
-      <Label layoutX="14.0" layoutY="22.0" text="Поиск" textFill="#757575">
+      <Label layoutX="14.0" layoutY="22.0" text="Find patient" textFill="#757575">
          <font>
             <Font name="Tahoma Bold" size="13.0" />
          </font>

@@ -68,7 +68,7 @@ public class DataBaseManager {
                     Customer customer = new Customer();
                     customer.setId(Integer.parseInt(id));
                     customer.setFirstName(firstName);
-                    customer.setLastname(lastName);
+                    customer.setLastName(lastName);
                     customer.setAddress(address);
                     customer.setBirthday(birthday);
                     customer.setGender(gender);

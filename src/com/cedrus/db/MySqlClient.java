@@ -37,7 +37,7 @@ public class MySqlClient {
 
     public Connection getConnection() throws SQLException {
         Connection conn = DriverManager.getConnection(databaseUrl, username, password);
-        conn.setReadOnly(true);
+        conn.setReadOnly(false);
         return conn;
     }
 

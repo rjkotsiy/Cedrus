@@ -28,7 +28,7 @@ public class SmartButton extends Button {
         styleMap.put(CssPropertyName.BACKGROUND_COLOR, ThemeManager.COLOR_WHITE);
         setCursor(Cursor.HAND);
         setOpacity(INITIAL_OPACITY);
-        getStylesheets().add(SmartButton.class.getResource("styles/custom-button.css").toExternalForm());
+        getStylesheets().add(SmartButton.class.getResource("../styles/css/custom-button.css").toExternalForm());
     }
 
     public String getTextFont() {

@@ -50,7 +50,7 @@ public class DataBaseManager {
 
     public List<Customer> getCustomerList() {
         ResultSet resultSet = null;
-        String query = "select * from cerdus_customer_data";
+        String query = "select * from cedrus_customer_data";
         List<Customer> customers = new ArrayList<>();
         try {
             if (connection != null) {

@@ -2,6 +2,8 @@ package com.cedrus.main.controller;
 
 import com.cedrus.db.DataBaseManager;
 import com.cedrus.models.Customer;
+import com.cedrus.ui.controls.SmartButton;
+import com.cedrus.ui.controls.SmartButtonBuilder;
 import com.cedrus.ui.resources.ResourceManager;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,16 +27,13 @@ public class MainController implements Initializable {
     private TableColumn<Customer, String> customerName;
 
     @FXML
-    private TableColumn<Customer, String> phone;
-
-    @FXML
-    private TableColumn<Customer, String> lastExamitationDate;
-
-    @FXML
-    private TableColumn<Customer, String> nextExaminationDate;
-
-    @FXML
     private TableColumn<Customer, ImageView> customerMenu;
+
+    @FXML
+    private HBox addNewCustomerHBox;
+
+    @FXML
+    private HBox searchCustomerHBox;
 
     private DataBaseManager dbManager = new DataBaseManager();
 
@@ -41,7 +41,9 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(location);
+        SmartButton addNewCustomer = SmartButtonBuilder.getDefaultBlueButtonBuilder().setText("Add Patient").build();
+        addNewCustomerHBox.getChildren().add(addNewCustomer);
+        searchCustomerHBox.setVisible(true);
     }
 
 
@@ -56,9 +58,6 @@ public class MainController implements Initializable {
 
     private void createTableCellValueFactorys() {
         customerName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        phone.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
-//        lastExamitationDate.setCellValueFactory(cellData -> cellData.getValue().getManagerProperty());
-//        nextExaminationDate.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
         customerMenu.setCellValueFactory(cellData -> new SimpleObjectProperty<ImageView>(new ImageView(ResourceManager.EDIT_PERIOD)));
     }
 

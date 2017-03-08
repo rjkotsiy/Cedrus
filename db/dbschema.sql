@@ -11,12 +11,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping data for table mydb.cerdus_customer_data: ~2 rows (approximately)
-/*!40000 ALTER TABLE `cerdus_customer_data` DISABLE KEYS */;
-REPLACE INTO `cerdus_customer_data` (`customer_id`, `firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`) VALUES
-	(1, 'Roman', 'Kotsiy', 'Lviv, Dibrovna 6\r\n', NULL, NULL, '380970016107', NULL),
-	(2, 'Natalia', 'Gavriljuk', 'Lviv, Dibrovna  6', NULL, NULL, '+380506750566', NULL);
-/*!40000 ALTER TABLE `cerdus_customer_data` ENABLE KEYS */;
+-- Dumping data for table mydb.cedrus_customer_data: ~4 rows (approximately)
+/*!40000 ALTER TABLE `cedrus_customer_data` DISABLE KEYS */;
+REPLACE INTO `cedrus_customer_data` (`customer_id`, `firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`) VALUES
+	(1, 'Roman', 'Kotsiy', 'Lviv, Dibrovna 6\r\n', '2017-03-08', 'male', '380970016107', '2017-03-08'),
+	(2, 'Natalia', 'Gavriljuk', 'Lviv, Dibrovna  6', '2017-03-08', 'female', '+380506750566', '2017-03-08'),
+	(3, 'Daniel', 'Gavriljuk', 'Lviv, Dibrovna  6', '2017-03-08', 'female', '+380506750566', '2017-03-08'),
+	(4, 'Makar', 'Gavriljuk', 'Lviv, Dibrovna  6', '2017-03-08', 'female', '+380506750566', '2017-03-08');
+/*!40000 ALTER TABLE `cedrus_customer_data` ENABLE KEYS */;
 
 -- Dumping data for table mydb.customer_attachments: ~0 rows (approximately)
 /*!40000 ALTER TABLE `customer_attachments` DISABLE KEYS */;

@@ -9,6 +9,7 @@ import java.io.File;
 
 public class ResourceManager {
 
+	public static final ImageView NULL_IMAGE_VIEW = new ImageView(new File("").toURI().toString());
 
 	public static final Image METRIC_COLLECTION_MODE_ON = new Image(new File("./resources/auto-collection-on.png").toURI().toString());
 

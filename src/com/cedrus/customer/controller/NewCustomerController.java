@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 
 public class NewCustomerController implements Initializable {
 
+    //<editor-fold desc="Mapped UI Controls">
+
     @FXML
     private HBox bottomToolbar;
 
@@ -48,6 +50,7 @@ public class NewCustomerController implements Initializable {
 
     @FXML
     private TextArea direction;
+    //</editor-fold>
 
     private SmartButton addButton;
 

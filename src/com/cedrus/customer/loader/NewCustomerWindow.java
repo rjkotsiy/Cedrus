@@ -20,21 +20,25 @@ public class NewCustomerWindow {
 	private Stage stage;
 	private NewCustomerController controller;
 
+	//<editor-fold desc="Class Constructor">
 	public NewCustomerWindow() {
 		stage = null;
 		createWindow();
 	}
+	//</editor-fold>
 
 	public void createWindow() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(NewCustomerWindow.class.getResource("../view/NewCustomer.fxml"));
-			AnchorPane shadowPane = loader.load();
+			AnchorPane rootPane = loader.load();
 			controller = loader.getController();
-			Scene scene = new Scene(shadowPane);
+			Scene scene = new Scene(rootPane);
 			scene.setFill(Color.TRANSPARENT);
 			stage = new Stage(StageStyle.DECORATED);
 			stage.setScene(scene);
+			stage.setWidth(637);
+			stage.setHeight(586);
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(Main.getMainStage());
 			stage.setTitle("Create Patient Profile");

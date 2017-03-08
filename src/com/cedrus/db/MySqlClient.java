@@ -21,13 +21,10 @@ public class MySqlClient {
 
 
     public MySqlClient(String databaseUrl, String username, String password) {
-
         this.databaseUrl = databaseUrl;
         this.username = username;
         this.password = password;
-
         try {
-            DriverManager.setLoginTimeout(1);
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             logger.debug("driver successfully registered");
         } catch (SQLException e) {
@@ -36,9 +33,7 @@ public class MySqlClient {
     }
 
     public Connection getConnection() throws SQLException {
-        Connection conn = DriverManager.getConnection(databaseUrl, username, password);
-        conn.setReadOnly(false);
-        return conn;
+        return DriverManager.getConnection(databaseUrl, username, password);
     }
 
     public boolean checkConnection() {
@@ -52,7 +47,6 @@ public class MySqlClient {
             } else {
                 return false;
             }
-
         } catch (SQLException e) {
             logger.error(e.getMessage());
             return false;

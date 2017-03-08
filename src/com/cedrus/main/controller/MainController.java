@@ -17,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,7 +37,7 @@ public class MainController implements Initializable {
     @FXML
     private HBox searchCustomerHBox;
 
-    private DataBaseManager dbManager = new DataBaseManager();
+    private DataBaseManager dbManager;
 
     private ObservableList<Customer> customers;
 
@@ -70,6 +69,10 @@ public class MainController implements Initializable {
         dbManager = new DataBaseManager();
         dbManager.connect();
         createTableCellValueFactorys();
+        refreshCustomerTable();
+    }
+
+    public void refreshCustomerTable() {
         customers = FXCollections.observableArrayList(dbManager.getCustomerList());
         customersTable.setItems(customers);
         customersTable.refresh();
@@ -80,5 +83,7 @@ public class MainController implements Initializable {
         customerMenu.setCellValueFactory(cellData -> new SimpleObjectProperty<ImageView>(new ImageView(ResourceManager.METRIC_COLLECTION_MODE_OFF)));
     }
 
-
+    public DataBaseManager getDbManager() {
+        return dbManager;
+    }
 }

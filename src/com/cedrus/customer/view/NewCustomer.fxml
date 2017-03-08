@@ -32,18 +32,18 @@
          </font>
       </Label>
       <TextField fx:id="firstName" layoutX="249.0" layoutY="74.0" prefHeight="29.0" prefWidth="352.0" />
-      <Label layoutX="408.0" layoutY="238.0" text="Gender" textFill="#4d4d4d">
+      <Label layoutX="402.0" layoutY="239.0" text="Gender" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <ComboBox fx:id="gender" layoutX="462.0" layoutY="232.0" prefHeight="29.0" prefWidth="138.0" promptText=" -- Please Select --" />
-      <Label layoutX="48.0" layoutY="321.0" text="Description" textFill="#4d4d4d">
+      <ComboBox fx:id="gender" layoutX="452.0" layoutY="232.0" prefHeight="29.0" prefWidth="148.0" promptText=" -- Please Select --" />
+      <Label layoutX="48.0" layoutY="321.0" text="Medical Direction" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="description" layoutX="248.0" layoutY="321.0" prefHeight="133.0" prefWidth="352.0" />
+      <TextArea fx:id="direction" layoutX="248.0" layoutY="321.0" prefHeight="133.0" prefWidth="352.0" />
       <HBox fx:id="linkHBox" layoutX="332.0" layoutY="442.0" />
       <Label alignment="CENTER" layoutX="253.0" layoutY="41.0" prefHeight="16.0" prefWidth="155.0" style="-fx-background-color: #fb8500; -fx-background-radius: 100px;" text="ALL FIELDS ARE REQUIRED" textFill="WHITE" AnchorPane.leftAnchor="247.0">
          <font>
@@ -61,24 +61,24 @@
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="address" layoutX="248.0" layoutY="150.0" prefHeight="29.0" prefWidth="352.0" />
-      <Label fx:id="phone" layoutX="48.0" layoutY="193.0" text="Address" textFill="#4d4d4d">
+      <TextField fx:id="phone" layoutX="248.0" layoutY="150.0" prefHeight="29.0" prefWidth="352.0" />
+      <Label fx:id="" layoutX="48.0" layoutY="193.0" text="Address" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="address1" layoutX="248.0" layoutY="186.0" prefHeight="29.0" prefWidth="352.0" />
-      <Label fx:id="phone1" layoutX="48.0" layoutY="235.0" text="Birthday" textFill="#4d4d4d">
+      <TextField fx:id="address" layoutX="248.0" layoutY="186.0" prefHeight="29.0" prefWidth="352.0" />
+      <Label layoutX="48.0" layoutY="235.0" text="Birthday" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <DatePicker fx:id="birthday" layoutX="248.0" layoutY="231.0" prefHeight="29.0" prefWidth="138.0" />
-      <Label fx:id="doctor" layoutX="48.0" layoutY="282.0" text="Doctor" textFill="#4d4d4d">
+      <DatePicker fx:id="birthday" editable="false" layoutX="248.0" layoutY="231.0" prefHeight="29.0" prefWidth="138.0" promptText="-- Please Select  --" />
+      <Label layoutX="48.0" layoutY="282.0" text="Doctor" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="address11" layoutX="248.0" layoutY="275.0" prefHeight="29.0" prefWidth="352.0" />
+      <TextField fx:id="doctor" layoutX="248.0" layoutY="275.0" prefHeight="29.0" prefWidth="352.0" />
    </children>
 </AnchorPane>

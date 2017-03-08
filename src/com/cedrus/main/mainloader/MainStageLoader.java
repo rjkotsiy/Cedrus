@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class MainStageLoader {
 
+    private MainController mainController;
+
     public void loadMainStage(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainStageLoader.class.getResource("../view/main.fxml"));
@@ -18,8 +20,13 @@ public class MainStageLoader {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 660, 600));
         primaryStage.show();
-        MainController mainController = loader.getController();
+
+        mainController = loader.getController();
         mainController.setup();
+    }
+
+    public MainController getMainController() {
+        return mainController;
     }
 
 }

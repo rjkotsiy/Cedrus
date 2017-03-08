@@ -65,6 +65,7 @@ public class DataBaseManager {
                     String phone = resultSet.getString(resultSet.findColumn("phone"));
                     String registrationDate = resultSet.getString(resultSet.findColumn("registration_date"));
                     String doctor = resultSet.getString(resultSet.findColumn("doctor"));
+                    String direction = resultSet.getString(resultSet.findColumn("direction"));
 
                     Customer customer = new Customer();
                     customer.setId(Integer.parseInt(id));
@@ -76,6 +77,8 @@ public class DataBaseManager {
                     customer.setPhone(phone);
                     customer.setRegistration_date(registrationDate);
                     customer.setDoctor(doctor);
+                    customer.setDirection(direction);
+
 
                     customers.add(customer);
                 }
@@ -90,5 +93,31 @@ public class DataBaseManager {
             }
         }
         return customers;
+    }
+
+    public boolean addCustomer(Customer customer) {
+
+        String query = "INSERT INTO `mydb`.`cedrus_customer_data` (`firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`, `doctor`, `direction`) ";
+
+        query += "VALUES "
+                + "('" + customer.getFirstName() + "',"
+                + "'" + customer.getLastName() + "',"
+                + "'" + customer.getAddress() + "',"
+                + "'" + customer.getBirthday() + "',"
+                + "'" + customer.getGender() + "',"
+                + "'" + customer.getPhone() + "',"
+                + "'" + customer.getRegistration_date() + "',"
+                + "'" + customer.getDoctor() + "',"
+                + "'" + customer.getDirection() + "')";
+
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 }

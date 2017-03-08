@@ -14,6 +14,7 @@ public class Customer {
 
     private String gender;
     private String doctor;
+    private String direction;
 
     public Integer getId() {
         return id;
@@ -94,4 +95,13 @@ public class Customer {
     public String getDoctor() {
         return doctor;
     }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
 }

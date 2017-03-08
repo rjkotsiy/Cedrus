@@ -1,7 +1,9 @@
 package com.cedrus.main.controller;
 
+import com.cedrus.customer.loader.NewCustomerWindow;
 import com.cedrus.db.DataBaseManager;
 import com.cedrus.models.Customer;
+import com.cedrus.ui.controls.CustomTextField;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
 import com.cedrus.ui.resources.ResourceManager;
@@ -15,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,9 +44,25 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        SmartButton addNewCustomer = SmartButtonBuilder.getDefaultBlueButtonBuilder().setText("Add Patient").build();
+        createUI();
+    }
+
+    private void createUI() {
+        SmartButton addNewCustomer = SmartButtonBuilder
+                .getDefaultBlueButtonBuilder()
+                .setText("Add Patient")
+                .setHeight(20)
+                .setWidth(110)
+                .build();
+
+        addNewCustomer.setOnAction(event -> {
+            NewCustomerWindow newCustomerWindow = new NewCustomerWindow();
+            newCustomerWindow.showWindow();
+        });
+        CustomTextField searchField = new CustomTextField();
+        searchField.setPrefHeight(18);
         addNewCustomerHBox.getChildren().add(addNewCustomer);
-        searchCustomerHBox.setVisible(true);
+        searchCustomerHBox.getChildren().add(0, searchField);
     }
 
 
@@ -58,7 +77,7 @@ public class MainController implements Initializable {
 
     private void createTableCellValueFactorys() {
         customerName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        customerMenu.setCellValueFactory(cellData -> new SimpleObjectProperty<ImageView>(new ImageView(ResourceManager.EDIT_PERIOD)));
+        customerMenu.setCellValueFactory(cellData -> new SimpleObjectProperty<ImageView>(new ImageView(ResourceManager.METRIC_COLLECTION_MODE_OFF)));
     }
 
 

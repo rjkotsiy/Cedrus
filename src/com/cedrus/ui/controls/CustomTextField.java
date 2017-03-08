@@ -34,7 +34,7 @@ public class CustomTextField extends TextField {
 	}
 
 	private void applyStyle() {
-		getStylesheets().add(CustomTextField.class.getResource("styles/custom-text-field.css").toExternalForm());
+		getStylesheets().add(CustomTextField.class.getResource("../styles/css/custom-text-field.css").toExternalForm());
 		if (OSDependStaff.isOsLinux()) {
 			Font defaultFont = this.getFont();
 			this.setFont(new Font(defaultFont.getName(), defaultFont.getSize() - 1.5));

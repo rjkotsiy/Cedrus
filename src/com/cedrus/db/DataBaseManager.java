@@ -64,6 +64,7 @@ public class DataBaseManager {
                     String gender = resultSet.getString(resultSet.findColumn("gender"));
                     String phone = resultSet.getString(resultSet.findColumn("phone"));
                     String registrationDate = resultSet.getString(resultSet.findColumn("registration_date"));
+                    String doctor = resultSet.getString(resultSet.findColumn("doctor"));
 
                     Customer customer = new Customer();
                     customer.setId(Integer.parseInt(id));
@@ -74,6 +75,7 @@ public class DataBaseManager {
                     customer.setGender(gender);
                     customer.setPhone(phone);
                     customer.setRegistration_date(registrationDate);
+                    customer.setDoctor(doctor);
 
                     customers.add(customer);
                 }

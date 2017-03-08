@@ -1,4 +1,4 @@
-package com.softserveinc.utils.common;
+package com.cedrus.utils;
 
 public class StringsUtils {
 
@@ -17,5 +17,4 @@ public class StringsUtils {
 		}
 		return builder.toString();
 	}
-
 }

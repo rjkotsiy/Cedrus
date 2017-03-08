@@ -11,7 +11,9 @@ public class Customer {
     private String phone;
     private String birthday;
     private String registration_date;
+
     private String gender;
+    private String doctor;
 
     public Integer getId() {
         return id;
@@ -83,5 +85,13 @@ public class Customer {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public String getDoctor() {
+        return doctor;
     }
 }

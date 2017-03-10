@@ -95,6 +95,26 @@ public class DataBaseManager {
         return customers;
     }
 
+    public boolean updateCustomer(Customer customer) {
+        String query = "UPDATE `mydb`.`cedrus_customer_data` "
+                + " SET `firstname`='" + customer.getFirstName() + "', "
+                + "`lastname`='" + customer.getLastName() + "', "
+                + "`address`='" + customer.getAddress() + "', "
+                + "`phone`='" + customer.getPhone() + "', "
+                + "`gender`='" + customer.getGender() + "', "
+                + "`doctor`='" + customer.getDoctor() + "', "
+                + "`direction`='" + customer.getDirection() + "'"
+                + " WHERE `customer_id`=" + customer.getId() + ";";
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public boolean addCustomer(Customer customer) {
 
         String query = "INSERT INTO `mydb`.`cedrus_customer_data` (`firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`, `doctor`, `direction`) ";

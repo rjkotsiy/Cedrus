@@ -28,6 +28,12 @@ public class SmartButtonBuilder {
 				.setTextFill(ThemeManager.TEXT_FILL_WHITE);
 	}
 
+	public static SmartButtonBuilder getDefaultRedButtonBuilder() {
+		return new SmartButtonBuilder().setBackgroundColor(ThemeManager.COLOR_RED)
+				.setTextFill(ThemeManager.TEXT_FILL_WHITE)
+				.setBorderColor(ThemeManager.COLOR_RED);
+	}
+
 	public static SmartButtonBuilder getDefaultWhiteButtonBuilder() {
 		return new SmartButtonBuilder().setBackgroundColor(ThemeManager.BUTTON_BACKGROUND_WHITE)
 				.setTextFill(ThemeManager.TEXT_FILL_IRIS_BLUE).setBorderColor(ThemeManager.BUTTON_BACKGROUND_IRIS_BLUE);

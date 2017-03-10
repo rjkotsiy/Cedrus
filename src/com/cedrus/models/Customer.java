@@ -99,10 +99,16 @@ public class Customer {
     }
 
     public String getDoctor() {
+        if (doctor == null) {
+            doctor = "";
+        }
         return doctor;
     }
 
     public String getDirection() {
+        if (direction == null) {
+            direction = "";
+        }
         return direction;
     }
 

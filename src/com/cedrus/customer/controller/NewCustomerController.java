@@ -73,7 +73,6 @@ public class NewCustomerController implements Initializable {
     }
 
     private void validateData() {
-
         boolean validationResult = firstName.getText().trim().isEmpty()
                 || secondName.getText().trim().isEmpty()
                 || phone.getText().trim().isEmpty()

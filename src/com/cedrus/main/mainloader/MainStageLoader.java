@@ -18,7 +18,7 @@ public class MainStageLoader {
         Parent root = loader.getRoot();
         primaryStage.setTitle(Main.APPLICATION_TITLE);
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 660, 600));
+        primaryStage.setScene(new Scene(root, 730, 600));
         primaryStage.show();
 
         mainController = loader.getController();

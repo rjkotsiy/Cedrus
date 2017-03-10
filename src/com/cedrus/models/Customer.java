@@ -1,5 +1,7 @@
 package com.cedrus.models;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Customer {
@@ -26,6 +28,10 @@ public class Customer {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public ObjectProperty getCustomer() {
+        return new SimpleObjectProperty(this);
     }
 
     public SimpleStringProperty getNameProperty() {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="shadowPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedrus.ui.messagebox.controller.MessageBoxController">
+   <children>
+      <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="382.0" style="-fx-background-color: #ffffff; -fx-border-color: #e7e7e7; -fx-border-width: 1px; -fx-border-radius: 3; -fx-background-radius: 3;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <Label fx:id="titleLabel" layoutX="27.0" layoutY="27.0" text="Title" textFill="#686868">
+               <font>
+                  <Font name="Tahoma Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="descriptionLabel" layoutX="29.0" layoutY="54.0" text="Description" textFill="#686868">
+               <font>
+                  <Font name="Tahoma" size="13.0" />
+               </font>
+            </Label>
+            <HBox fx:id="buttons" layoutX="28.0" layoutY="124.0" prefHeight="40.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

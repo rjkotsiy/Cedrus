@@ -112,6 +112,7 @@ public class NewCustomerController implements Initializable {
         addButton.setOnAction(event -> {
             if (Main.getMainController().getDbManager().addCustomer(createCustomerData())) {
                 Main.getMainController().refreshCustomerTable();
+                Main.getMainController().resetWindowState();
                 stage.close();
             }
         });

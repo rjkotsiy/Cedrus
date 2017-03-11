@@ -95,6 +95,19 @@ public class DataBaseManager {
         return customers;
     }
 
+    public boolean deleteCustomer(Customer customer) {
+        String query = "DELETE FROM `mydb`.`cedrus_customer_data` WHERE `customer_id`=" + customer.getId() + ";";
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+        return true;
+
+    }
+
     public boolean updateCustomer(Customer customer) {
         String query = "UPDATE `mydb`.`cedrus_customer_data` "
                 + " SET `firstname`='" + customer.getFirstName() + "', "

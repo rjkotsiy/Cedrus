@@ -6,6 +6,8 @@ import com.cedrus.models.Customer;
 import com.cedrus.ui.controls.CustomTextField;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.ui.messagebox.controller.MessageBoxController;
+import com.cedrus.ui.messagebox.loader.MessageBoxWindow;
 import com.cedrus.utils.DateTimeUtils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -15,18 +17,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
     //<editor-fold desc="Mapped UI Controls">
+
+    @FXML
+    private AnchorPane profileView;
+
     @FXML
     private TextField firstName;
 
@@ -74,33 +79,16 @@ public class MainController implements Initializable {
     private Customer currentCustomerModel;
     private BooleanProperty dataNotValidated;
     private SmartButton updateCustomerInfo;
+    private SmartButton addNewCustomer;
+    private SmartButton addExamination;
+    private SmartButton deleteCustomer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createUI();
     }
-
-    private void updateCustomer() {
-        Customer customer = new Customer();
-
-        customer.setId(currentCustomerModel.getId());
-        customer.setFirstName(firstName.getText());
-        customer.setLastName(secondName.getText());
-        customer.setAddress(address.getText());
-        customer.setBirthday(birthday.getValue().toString());
-        customer.setGender(gender.getValue());
-        customer.setPhone(phone.getText());
-        customer.setDoctor(doctor.getText());
-        customer.setDirection(direction.getText());
-
-        dbManager.updateCustomer(customer);
-        refreshCustomerTable();
-        customersTable.getSelectionModel().select(currentCustomerModel);
-        customersTable.requestFocus();
-    }
-
     private void createUI() {
-        SmartButton addNewCustomer = SmartButtonBuilder
+         addNewCustomer = SmartButtonBuilder
                 .getDefaultBlueButtonBuilder()
                 .setText("Add Patient")
                 .setHeight(20)
@@ -111,26 +99,40 @@ public class MainController implements Initializable {
                 .getDefaultBlueButtonBuilder()
                 .setText("Update data")
                 .setHeight(20)
-                .setWidth(100)
+                .setWidth(90)
                 .build();
 
         updateCustomerInfo.setOnAction(action -> {
             updateCustomer();
         });
 
-        SmartButton addExamination = SmartButtonBuilder
+        addExamination = SmartButtonBuilder
                 .getDefaultBlueButtonBuilder()
                 .setText("Add Medical Examination")
                 .setHeight(20)
-                .setWidth(150)
+                .setWidth(160)
                 .build();
 
-        SmartButton deleteCustomer = SmartButtonBuilder
+        deleteCustomer = SmartButtonBuilder
                 .getDefaultRedButtonBuilder()
                 .setText("DELETE")
                 .setHeight(20)
-                .setWidth(80)
+                .setWidth(70)
                 .build();
+
+        deleteCustomer.setOnAction(event -> {
+            MessageBoxWindow deleteMessageBox = new MessageBoxWindow();
+            deleteMessageBox.createWindow();
+            deleteMessageBox.setMessageBoxText("Are you sure want to delete profile?", "All profile data with examination history will be lost permanently!");
+            MessageBoxController.MessageBoxResult messageBoxResult = deleteMessageBox.showWindow();
+            if (messageBoxResult.equals(MessageBoxController.MessageBoxResult.CONFIRM)) {
+                if (dbManager.deleteCustomer(currentCustomerModel)) {
+                    refreshCustomerTable();
+                    currentCustomerModel = null;
+                    resetWindowState();
+                }
+            }
+        });
 
         addNewCustomer.setOnAction(event -> {
             NewCustomerWindow newCustomerWindow = new NewCustomerWindow();
@@ -143,12 +145,47 @@ public class MainController implements Initializable {
         searchCustomerHBox.getChildren().add(0, searchField);
 
         customerProfileUpBar.getChildren().addAll(addExamination, updateCustomerInfo, deleteCustomer);
-        HBox.setMargin(updateCustomerInfo, new Insets(0, 10, 0, 10));
+        HBox.setMargin(updateCustomerInfo, new Insets(0, 15, 0, 15));
         gender.getItems().add("MALE");
         gender.getItems().add("FEMALE");
 
     }
 
+    public void resetWindowState() {
+
+        profileView.setDisable(false);
+        deleteCustomer.setDisable(false);
+
+        updateCustomerInfo.disableProperty().unbind();
+        updateCustomerInfo.setDisable(false);
+
+        addExamination.setDisable(false);
+
+        if (currentCustomerModel != null && customers != null && !customers.isEmpty()) {
+            customersTable.getItems().forEach(item -> {
+                if (item.getId().equals(currentCustomerModel.getId())) {
+                    customersTable.getSelectionModel().select(item);
+                    customersTable.requestFocus();
+                    customersTable.refresh();
+                    return;
+                }
+            });
+        } else if (customers != null && !customers.isEmpty()) {
+            customersTable.getSelectionModel().select(customers.get(0));
+            customersTable.requestFocus();
+            customersTable.refresh();
+        } else {
+            clearProfileView();
+            profileView.setDisable(true);
+            deleteCustomer.setDisable(true);
+            updateCustomerInfo.setDisable(true);
+            addExamination.setDisable(true);
+        }
+    }
+
+    public DataBaseManager getDbManager() {
+        return dbManager;
+    }
 
     public void setup() {
         dbManager = new DataBaseManager();
@@ -156,9 +193,7 @@ public class MainController implements Initializable {
         dbManager.connect();
         setupTableFactories();
         refreshCustomerTable();
-        if (customers != null && !customers.isEmpty()) {
-            customersTable.getSelectionModel().select(customers.get(0));
-        }
+        resetWindowState();
         initializeControls();
     }
 
@@ -233,6 +268,8 @@ public class MainController implements Initializable {
         }
     }
 
+    //<editor-fold desc="Customer Table Factories">
+
     private void createCustomerTableRowFactory() {
         customersTable.setRowFactory(new Callback<TableView<Customer>, TableRow<Customer>>() {
             @Override
@@ -240,23 +277,28 @@ public class MainController implements Initializable {
                 final TableRow<Customer> row = new TableRow<Customer>() {
                     @Override
                     protected void updateItem(Customer item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setOnMouseClicked(e -> {
-                            if (isSelected()) {
-                                setStyle("-fx-background-color: #00b4d5; -fx-text-fill: #ffffff;");
-                            } else {
-                                setStyle(null);
-                            }
-                            setCustomerView(item);
-                        });
-                        selectedProperty().addListener(observable -> {
-                            if (isSelected()) {
-                                setStyle("-fx-background-color: #00b4d5; -fx-text-fill: #ffffff;");
-                            } else {
-                                setStyle(null);
-                            }
-                            setCustomerView(item);
-                        });
+                        if (item != null) {
+                            super.updateItem(item, empty);
+                            setOnMouseClicked(e -> {
+                                if (isSelected()) {
+                                    setStyle("-fx-background-color: #00b4d5;");
+                                } else {
+                                    setStyle(null);
+                                }
+                                setCustomerView(item);
+                                customersTable.refresh();
+                            });
+
+                            selectedProperty().addListener(observable -> {
+                                if (isSelected()) {
+                                    setStyle("-fx-background-color: #00b4d5;");
+                                } else {
+                                    setStyle(null);
+                                }
+                                setCustomerView(item);
+                                customersTable.refresh();
+                            });
+                        }
                     }
                 };
                 return row;
@@ -264,23 +306,21 @@ public class MainController implements Initializable {
         });
     }
 
-
-    //<editor-fold desc="Customer Table Cell Factories">
     private void createCustomerNameFactory() {
-
 
         customerName.setCellFactory(
                 new Callback<TableColumn<Customer, Customer>, TableCell<Customer, Customer>>() {
                     @Override
                     public TableCell<Customer, Customer> call(
                             TableColumn<Customer, Customer> periodNameColumn) {
-
                         return new TableCell<Customer, Customer>() {
-
                             @Override
                             public void updateItem(Customer item, boolean empty) {
                                 if (item != null && !empty) {
                                     super.updateItem(item, empty);
+                                    if (item.getId().equals(currentCustomerModel.getId())) {
+                                        setTextFill(Color.WHITE);
+                                    }
                                     setText(item.getFirstName() + " " + item.getLastName());
                                 }
                             }
@@ -291,7 +331,33 @@ public class MainController implements Initializable {
 
     //</editor-fold>
 
-    public DataBaseManager getDbManager() {
-        return dbManager;
+    private void updateCustomer() {
+        Customer customer = new Customer();
+
+        customer.setId(currentCustomerModel.getId());
+        customer.setFirstName(firstName.getText());
+        customer.setLastName(secondName.getText());
+        customer.setAddress(address.getText());
+        customer.setBirthday(birthday.getValue().toString());
+        customer.setGender(gender.getValue());
+        customer.setPhone(phone.getText());
+        customer.setDoctor(doctor.getText());
+        customer.setDirection(direction.getText());
+
+        dbManager.updateCustomer(customer);
+        refreshCustomerTable();
+        resetWindowState();
+    }
+
+    private void clearProfileView() {
+        firstName.clear();
+        secondName.clear();
+        phone.clear();
+        address.clear();
+        birthday.setValue(null);
+        gender.setValue(null);
+        doctor.clear();
+        direction.clear();
+        dataNotValidated.setValue(true);
     }
 }

@@ -3,6 +3,7 @@ package com.cedrus.db;
 
 import com.cedrus.logger.ApplicationLogger;
 import com.cedrus.models.Customer;
+import com.cedrus.models.Examination;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -151,6 +152,23 @@ public class DataBaseManager {
             return false;
         }
 
+        return true;
+    }
+
+    public boolean addExamination(Examination examinationData) {
+        String query = "INSERT INTO `mydb`.`customer_profile` (`customer_id`, `examination_date`, `doctor`, `summary_report`) ";
+        query += "VALUES "
+                + "('" + examinationData.getCustomerId() + "',"
+                + "'" + examinationData.getDate() + "',"
+                + "'" + examinationData.getDoctor() + "',"
+                + "'" + examinationData.getSummary() + "')";
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
         return true;
     }
 }

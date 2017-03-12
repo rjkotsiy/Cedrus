@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="shadowPane" maxHeight="415.0" prefHeight="415.0" prefWidth="645.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedrus.examination.controller.NewExaminationController">
+   <children>
+      <Label layoutX="49.0" layoutY="81.0" text="Doctor Name" textFill="#4d4d4d">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Label>
+      <Pane fx:id="bottomBar" layoutY="372.0" prefHeight="70.0" prefWidth="645.0" style="-fx-background-color: #eeeeee; -fx-border-width: 1;">
+         <children>
+            <HBox fx:id="bottomToolbar" />
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="30.0" top="15.0" />
+         </padding>
+      </Pane>
+      <Label fx:id="actionLabel" layoutX="49.0" layoutY="39.0" text="Examination" textFill="#515d65">
+         <font>
+            <Font name="Tahoma Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="doctorName" layoutX="249.0" layoutY="74.0" prefHeight="29.0" prefWidth="352.0" />
+      <Label focusTraversable="false" layoutX="48.0" layoutY="162.0" text="Examination Summary" textFill="#4d4d4d">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Label>
+      <HBox fx:id="linkHBox" layoutX="332.0" layoutY="442.0" />
+      <Label alignment="CENTER" focusTraversable="false" layoutX="253.0" layoutY="41.0" prefHeight="16.0" prefWidth="155.0" style="-fx-background-color: #fb8500; -fx-background-radius: 100px;" text="ALL FIELDS ARE REQUIRED" textFill="WHITE" AnchorPane.leftAnchor="247.0">
+         <font>
+            <Font name="Tahoma" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="119.0" text="Examination Date" textFill="#4d4d4d">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="examinationDate" editable="false" layoutX="248.0" layoutY="115.0" prefHeight="29.0" prefWidth="155.0" promptText="-- Please Select  --" />
+      <TextArea fx:id="examinationSummary" layoutX="248.0" layoutY="162.0" prefHeight="162.0" prefWidth="352.0" />
+   </children>
+</AnchorPane>

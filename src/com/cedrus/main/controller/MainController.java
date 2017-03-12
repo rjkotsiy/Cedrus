@@ -2,6 +2,7 @@ package com.cedrus.main.controller;
 
 import com.cedrus.customer.loader.NewCustomerWindow;
 import com.cedrus.db.DataBaseManager;
+import com.cedrus.examination.loader.NewExaminationWindow;
 import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
 import com.cedrus.ui.controls.CustomTextField;
@@ -72,6 +73,9 @@ public class MainController implements Initializable {
 
     @FXML
     private HBox customerProfileUpBar;
+
+    @FXML
+    private HBox customerProfileBottomBar;
     //</editor-fold>
 
     private DataBaseManager dbManager;
@@ -80,10 +84,12 @@ public class MainController implements Initializable {
 
     private Customer currentCustomerModel;
     private BooleanProperty dataNotValidated;
+
     private SmartButton updateCustomerInfo;
     private SmartButton addNewCustomer;
     private SmartButton addExamination;
     private SmartButton deleteCustomer;
+    private SmartButton examinationHistory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -102,11 +108,18 @@ public class MainController implements Initializable {
                 .setImage(ResourceManager.CALENDAR)
                 .build();
 
-         addNewCustomer = SmartButtonBuilder
+        addNewCustomer = SmartButtonBuilder
                 .getDefaultBlueButtonBuilder()
                 .setText("Add Patient")
                 .setHeight(20)
                 .setWidth(110)
+                .build();
+
+        examinationHistory = SmartButtonBuilder
+                .getLinkButtonBuilder()
+                .setText("Examination History...")
+                .setHeight(20)
+                .setWidth(170)
                 .build();
 
         updateCustomerInfo = SmartButtonBuilder
@@ -115,6 +128,7 @@ public class MainController implements Initializable {
                 .setHeight(20)
                 .setWidth(90)
                 .build();
+
 
         updateCustomerInfo.setOnAction(action -> {
             updateCustomer();
@@ -126,6 +140,11 @@ public class MainController implements Initializable {
                 .setHeight(20)
                 .setWidth(160)
                 .build();
+
+        addExamination.setOnAction(action -> {
+            NewExaminationWindow examinationWindow = new NewExaminationWindow();
+            examinationWindow.showWindow(currentCustomerModel);
+        });
 
         deleteCustomer = SmartButtonBuilder
                 .getDefaultRedButtonBuilder()
@@ -160,8 +179,12 @@ public class MainController implements Initializable {
 
         customerProfileUpBar.getChildren().addAll(addExamination, updateCustomerInfo, deleteCustomer);
         HBox.setMargin(updateCustomerInfo, new Insets(0, 15, 0, 15));
+
+        customerProfileBottomBar.getChildren().add(examinationHistory);
+
         gender.getItems().add("MALE");
         gender.getItems().add("FEMALE");
+
 
     }
 
@@ -330,11 +353,9 @@ public class MainController implements Initializable {
                         return new TableCell<Customer, Customer>() {
                             @Override
                             public void updateItem(Customer item, boolean empty) {
-                                if (item != null && !empty) {
+                                if (item != null) {
                                     super.updateItem(item, empty);
-                                    if (item.getId().equals(currentCustomerModel.getId())) {
-                                        setTextFill(Color.WHITE);
-                                    }
+                                    setTextFill(Color.BLACK);
                                     setText(item.getFirstName() + " " + item.getLastName());
                                 }
                             }

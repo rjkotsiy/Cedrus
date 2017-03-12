@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final String APP_VERISON = "v1.0 (alpha)";
-    public static final String APPLICATION_TITLE = "Cedrus Patient Profiles " + APP_VERISON;
+    public static final String APP_VERISON = " - v1.0 (alpha)";
+    public static final String APPLICATION_TITLE = "Cedrus Customer Profile Manager" + APP_VERISON;
 
     public static Stage mainStage;
 

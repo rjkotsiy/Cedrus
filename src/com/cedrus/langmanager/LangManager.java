@@ -23,6 +23,9 @@ public class LangManager {
     }
 
     public String getSearchText(Lang language) {
+
+        String langFilePath = "./lang/" + language.toString();
+
         if (language.equals(Lang.EN)) {
             return SEARCH_TEXT_EN;
         } else if (language.equals(Lang.UA)) {

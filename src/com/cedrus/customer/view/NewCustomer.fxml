@@ -32,20 +32,18 @@
          </font>
       </Label>
       <TextField fx:id="firstName" layoutX="249.0" layoutY="74.0" prefHeight="29.0" prefWidth="352.0" />
-      <Label layoutX="402.0" layoutY="239.0" text="Gender" textFill="#4d4d4d">
+      <Label focusTraversable="false" layoutX="402.0" layoutY="239.0" text="Gender" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <ComboBox fx:id="gender" layoutX="452.0" layoutY="232.0" prefHeight="29.0" prefWidth="148.0" promptText=" -- Please Select --" />
-      <Label layoutX="48.0" layoutY="321.0" text="Medical Direction" textFill="#4d4d4d">
+      <Label focusTraversable="false" layoutX="48.0" layoutY="321.0" text="Medical Direction" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="direction" layoutX="248.0" layoutY="321.0" prefHeight="133.0" prefWidth="352.0" />
       <HBox fx:id="linkHBox" layoutX="332.0" layoutY="442.0" />
-      <Label alignment="CENTER" layoutX="253.0" layoutY="41.0" prefHeight="16.0" prefWidth="155.0" style="-fx-background-color: #fb8500; -fx-background-radius: 100px;" text="ALL FIELDS ARE REQUIRED" textFill="WHITE" AnchorPane.leftAnchor="247.0">
+      <Label alignment="CENTER" focusTraversable="false" layoutX="253.0" layoutY="41.0" prefHeight="16.0" prefWidth="155.0" style="-fx-background-color: #fb8500; -fx-background-radius: 100px;" text="ALL FIELDS ARE REQUIRED" textFill="WHITE" AnchorPane.leftAnchor="247.0">
          <font>
             <Font name="Tahoma" size="11.0" />
          </font>
@@ -74,11 +72,13 @@
          </font>
       </Label>
       <DatePicker fx:id="birthday" editable="false" layoutX="248.0" layoutY="231.0" prefHeight="29.0" prefWidth="138.0" promptText="-- Please Select  --" />
+      <ComboBox fx:id="gender" layoutX="452.0" layoutY="232.0" prefHeight="29.0" prefWidth="148.0" promptText=" -- Please Select --" />
       <Label layoutX="48.0" layoutY="282.0" text="Doctor" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
       <TextField fx:id="doctor" layoutX="248.0" layoutY="275.0" prefHeight="29.0" prefWidth="352.0" />
+      <TextArea fx:id="direction" layoutX="248.0" layoutY="321.0" prefHeight="133.0" prefWidth="352.0" />
    </children>
 </AnchorPane>

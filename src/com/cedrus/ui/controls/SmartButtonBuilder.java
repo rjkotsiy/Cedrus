@@ -29,9 +29,9 @@ public class SmartButtonBuilder {
 	}
 
 	public static SmartButtonBuilder getDefaultRedButtonBuilder() {
-		return new SmartButtonBuilder().setBackgroundColor(ThemeManager.COLOR_RED)
-				.setTextFill(ThemeManager.TEXT_FILL_WHITE)
-				.setBorderColor(ThemeManager.COLOR_RED);
+		return new SmartButtonBuilder().setBackgroundColor(ThemeManager.TRANSPARENT)
+				.setTextFill(ThemeManager.COLOR_RED)
+				.setBorderColor(ThemeManager.TRANSPARENT);
 	}
 
 	public static SmartButtonBuilder getDefaultWhiteButtonBuilder() {

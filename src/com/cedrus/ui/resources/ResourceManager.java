@@ -16,6 +16,6 @@ public class ResourceManager {
 	public static final Image METRIC_COLLECTION_MODE_OFF = new Image(new File("./resources/auto-collection-off.png").toURI().toString());
 
 	public static final Image CALENDAR = new Image(
-			new File("./resources/calendar-2.png").toURI().toString());
+			new File("./resources/search.png").toURI().toString());
 
 }

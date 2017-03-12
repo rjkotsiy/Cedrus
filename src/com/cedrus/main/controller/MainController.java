@@ -2,12 +2,14 @@ package com.cedrus.main.controller;
 
 import com.cedrus.customer.loader.NewCustomerWindow;
 import com.cedrus.db.DataBaseManager;
+import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
 import com.cedrus.ui.controls.CustomTextField;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
 import com.cedrus.ui.messagebox.controller.MessageBoxController;
 import com.cedrus.ui.messagebox.loader.MessageBoxWindow;
+import com.cedrus.ui.resources.ResourceManager;
 import com.cedrus.utils.DateTimeUtils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -87,7 +89,19 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         createUI();
     }
+
     private void createUI() {
+
+        LangManager.getInstance();
+
+        SmartButton searchButton = SmartButtonBuilder
+                .getLinkButtonBuilder()
+                .setText(LangManager.getInstance().getSearchText(LangManager.Lang.EN))
+                .setHeight(20)
+                .setWidth(110)
+                .setImage(ResourceManager.CALENDAR)
+                .build();
+
          addNewCustomer = SmartButtonBuilder
                 .getDefaultBlueButtonBuilder()
                 .setText("Add Patient")
@@ -115,7 +129,7 @@ public class MainController implements Initializable {
 
         deleteCustomer = SmartButtonBuilder
                 .getDefaultRedButtonBuilder()
-                .setText("DELETE")
+                .setText("x Delete")
                 .setHeight(20)
                 .setWidth(70)
                 .build();
@@ -142,7 +156,7 @@ public class MainController implements Initializable {
         searchField.setPrefHeight(12);
         searchField.setMaxHeight(12);
         addNewCustomerHBox.getChildren().add(addNewCustomer);
-        searchCustomerHBox.getChildren().add(0, searchField);
+        searchCustomerHBox.getChildren().add(searchButton);
 
         customerProfileUpBar.getChildren().addAll(addExamination, updateCustomerInfo, deleteCustomer);
         HBox.setMargin(updateCustomerInfo, new Insets(0, 15, 0, 15));

@@ -16,4 +16,7 @@ public class ResourceManager {
 	public static final Image CALENDAR = new Image(
 			new File("./resources/calendar-2.png").toURI().toString());
 
+	public static final Image SEARCH = new Image(
+			new File("./resources/search.png").toURI().toString());
+
 }

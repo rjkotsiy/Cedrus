@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="shadowPane" maxHeight="415.0" prefHeight="415.0" prefWidth="645.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedrus.examination.controller.NewExaminationController">
    <children>
-      <Label layoutX="49.0" layoutY="81.0" text="Doctor Name" textFill="#4d4d4d">
+      <Label layoutX="38.0" layoutY="81.0" text="Doctor Name" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
@@ -24,13 +24,13 @@
             <Insets bottom="25.0" left="30.0" top="15.0" />
          </padding>
       </Pane>
-      <Label fx:id="actionLabel" layoutX="49.0" layoutY="39.0" text="Examination" textFill="#515d65">
+      <Label fx:id="actionLabel" layoutX="38.0" layoutY="39.0" text="Examination" textFill="#515d65">
          <font>
             <Font name="Tahoma Bold" size="16.0" />
          </font>
       </Label>
       <TextField fx:id="doctorName" layoutX="249.0" layoutY="74.0" prefHeight="29.0" prefWidth="352.0" />
-      <Label focusTraversable="false" layoutX="49.0" layoutY="114.0" text="Examination Summary" textFill="#4d4d4d">
+      <Label focusTraversable="false" layoutX="38.0" layoutY="114.0" text="Examination Summary" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
@@ -41,12 +41,22 @@
             <Font name="Tahoma" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="49.0" layoutY="287.0" text="Next Examination Date" textFill="#4d4d4d">
+      <Label layoutX="38.0" layoutY="289.0" text="Next Examination Date" textFill="#4d4d4d">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Label>
       <TextArea fx:id="examinationSummary" layoutX="249.0" layoutY="114.0" prefHeight="162.0" prefWidth="352.0" />
       <HBox fx:id="nextExaminationDateTime" layoutX="247.0" layoutY="286.0" prefHeight="29.0" prefWidth="352.0" />
+      <Label layoutX="38.0" layoutY="335.0" text="Attachments (design, photos, doc)" textFill="#4d4d4d">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Label>
+      <HBox fx:id="attachments" layoutX="249.0" layoutY="329.0" prefHeight="29.0" prefWidth="352.0">
+         <padding>
+            <Insets top="4.0" />
+         </padding>
+      </HBox>
    </children>
 </AnchorPane>

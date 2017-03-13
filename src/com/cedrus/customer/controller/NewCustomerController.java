@@ -1,9 +1,11 @@
 package com.cedrus.customer.controller;
 
 import com.cedrus.Main;
+import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.ui.resources.ResourceManager;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;

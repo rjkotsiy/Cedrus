@@ -1,5 +1,8 @@
 package com.cedrus.models;
 
+import java.io.File;
+import java.util.List;
+
 public class Examination {
 
     private Integer customerId;
@@ -7,6 +10,15 @@ public class Examination {
     private String summary;
     private String date;
     private String nextExaminationDateTime;
+    private List<File> attachments;
+
+    public List<File> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<File> attachments) {
+        this.attachments = attachments;
+    }
 
     public String getNextExaminationDateTime() {
         return nextExaminationDateTime;

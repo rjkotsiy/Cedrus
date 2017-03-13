@@ -5,12 +5,14 @@ import com.cedrus.logger.ApplicationLogger;
 import com.cedrus.models.Customer;
 import com.cedrus.models.Examination;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DataBaseManager {
 
@@ -36,6 +38,10 @@ public class DataBaseManager {
         }
     }
 
+    private String createConnectionString(String inURL, String port, String databaseName) {
+        return JDBC_STRING + inURL + ":" + port + "/" + databaseName + "?autoReconnect=true";
+    }
+
     public void close() {
         try {
             connection.close();
@@ -43,10 +49,6 @@ public class DataBaseManager {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-    }
-
-    private String createConnectionString(String inURL, String port, String databaseName) {
-        return JDBC_STRING + inURL + ":" + port + "/" + databaseName + "?autoReconnect=true";
     }
 
     public List<Customer> getCustomerList() {
@@ -170,12 +172,46 @@ public class DataBaseManager {
 
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(query);
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = statement.getGeneratedKeys();
+            Integer recordId = 0;
+            if (rs.next()) {
+                recordId = rs.getInt(1);
+            }
             statement.executeUpdate(updQuery);
+
+            if (examinationData.getAttachments() != null && !examinationData.getAttachments().isEmpty()) {
+                attachFile(examinationData.getAttachments().get(0), examinationData.getCustomerId(), recordId);
+            }
+
         } catch (SQLException e) {
             logger.error(e.getMessage());
             return false;
         }
         return true;
     }
+
+    public boolean attachFile(File fileName, Integer customerId, Integer recordId) {
+        try {
+            String sql = "INSERT INTO mydb.customer_attachment (customer_id, record_id, filename, attached_file) values (?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            statement.setInt(2, recordId);
+            statement.setString(3, fileName.getName());
+            InputStream inputStream = new FileInputStream(fileName);
+
+            statement.setBlob(4, inputStream);
+
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }

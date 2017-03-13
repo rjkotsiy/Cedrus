@@ -6,6 +6,7 @@ import com.cedrus.models.Examination;
 import com.cedrus.ui.controls.CustomDateTimePicker;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.ui.styles.ThemeManager;
 import com.cedrus.utils.DateTimeUtils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -15,12 +16,14 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.joda.time.DateTime;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class NewExaminationController implements Initializable {
 
@@ -36,10 +39,14 @@ public class NewExaminationController implements Initializable {
     private HBox nextExaminationDateTime;
 
     @FXML
+    private HBox attachments;
+
+    @FXML
     private TextArea examinationSummary;
     //</editor-fold>
 
     private SmartButton addButton;
+    private SmartButton attachButton;
     private CustomDateTimePicker examinationDate;
 
     private Stage stage;
@@ -47,6 +54,7 @@ public class NewExaminationController implements Initializable {
     private BooleanProperty dataNotConsistent;
     private Customer customer;
     private String currentDateTime = DateTimeUtils.localDateTimeToStringHuman(LocalDateTime.now());
+    private File fileName;
 
     private Examination createExaminationData() {
         Examination examination = new Examination();
@@ -55,6 +63,11 @@ public class NewExaminationController implements Initializable {
         examination.setSummary(examinationSummary.getText());
         examination.setDate(currentDateTime);
         examination.setNextExaminationDateTime(examinationDate.getStringValue());
+        if (fileName != null) {
+            List<File> attachments = new ArrayList<>();
+            attachments.add(fileName);
+            examination.setAttachments(attachments);
+        }
         return examination;
     }
 
@@ -71,9 +84,41 @@ public class NewExaminationController implements Initializable {
         examinationSummary.textProperty().addListener(e -> validateData());
     }
 
+    private void chooseAttachedFile() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setTitle("Please Select Attachment");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Design (pdf) files", "*.*"));
+
+        fileName = fileChooser.showOpenDialog(Main.getMainStage());
+        if (fileName != null) {
+            attachButton.setText("x Remove design");
+            attachButton.setTextFill(Color.valueOf(ThemeManager.COLOR_RED));
+        }
+    }
+
     private void createControls() {
         double buttonHeight = 30;
         double buttonWidth = 70;
+
+        attachButton = SmartButtonBuilder
+                .getLinkButtonBuilder()
+                .setText("+Attach design")
+                .setHeight(20)
+                .setWidth(110)
+                .build();
+
+        attachButton.setOnAction(a -> {
+            if (fileName == null) {
+                chooseAttachedFile();
+            } else {
+                attachButton.setText("+Attach design");
+                attachButton.setTextFill(Color.valueOf(ThemeManager.TEXT_FILL_IRIS_BLUE));
+                fileName = null;
+            }
+
+        });
 
         examinationDate = new CustomDateTimePicker();
         examinationDate.setAllowEmpty(true);
@@ -103,6 +148,7 @@ public class NewExaminationController implements Initializable {
         HBox.setMargin(addButton, new Insets(20, 0, 0, 10));
 
         nextExaminationDateTime.getChildren().add(examinationDate);
+        attachments.getChildren().add(attachButton);
         initializeControls();
 
         dataNotConsistent = new SimpleBooleanProperty(true);

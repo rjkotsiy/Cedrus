@@ -108,7 +108,7 @@ public class MainController implements Initializable {
                 .setText(LangManager.getInstance().getSearchText(LangManager.Lang.EN))
                 .setHeight(20)
                 .setWidth(110)
-                .setImage(ResourceManager.CALENDAR)
+                .setImage(ResourceManager.SEARCH)
                 .build();
 
         addNewCustomer = SmartButtonBuilder

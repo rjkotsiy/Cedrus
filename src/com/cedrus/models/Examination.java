@@ -6,6 +6,15 @@ public class Examination {
     private String doctor;
     private String summary;
     private String date;
+    private String nextExaminationDateTime;
+
+    public String getNextExaminationDateTime() {
+        return nextExaminationDateTime;
+    }
+
+    public void setNextExaminationDateTime(String nextExaminationDateTime) {
+        this.nextExaminationDateTime = nextExaminationDateTime;
+    }
 
     public Integer getCustomerId() {
         return customerId;

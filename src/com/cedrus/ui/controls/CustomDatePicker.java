@@ -30,15 +30,6 @@ import javafx.util.Callback;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * @file CustomDateTimePicker.java
- * @brief Custom DateTime picker
- * @note Copyright (c) 2016 SoftServe, Inc. Confidential and proprietary. All
- * rights reserved.
- * @author Pavlo Antentyk (panten@softserveinc.com)
- * @since 2016.10.03
- */
-
 public class CustomDatePicker extends HBox {
 
 	private CustomTextField dateField;

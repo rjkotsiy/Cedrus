@@ -61,10 +61,13 @@
                   <Insets left="3.0" top="6.0" />
                </padding>
                <children>
-                  <Label prefHeight="17.0" prefWidth="220.0" text="Next examination date: xx/xx/xx" textFill="#6b6b6b">
+                  <Label fx:id="nextExaminationDateTime" prefHeight="17.0" prefWidth="268.0" text="Next assigned date time: xxxx/xxxx/xxxx xx:xx" textFill="#6b6b6b">
                      <font>
                         <Font name="Tahoma" size="12.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>

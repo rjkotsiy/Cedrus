@@ -3,21 +3,23 @@ package com.cedrus.examination.controller;
 import com.cedrus.Main;
 import com.cedrus.models.Customer;
 import com.cedrus.models.Examination;
+import com.cedrus.ui.controls.CustomDateTimePicker;
 import com.cedrus.ui.controls.SmartButton;
 import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.utils.DateTimeUtils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import org.joda.time.DateTime;
 
 import java.net.URL;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class NewExaminationController implements Initializable {
@@ -31,38 +33,40 @@ public class NewExaminationController implements Initializable {
     private TextField doctorName;
 
     @FXML
-    private DatePicker examinationDate;
+    private HBox nextExaminationDateTime;
 
     @FXML
     private TextArea examinationSummary;
     //</editor-fold>
 
     private SmartButton addButton;
+    private CustomDateTimePicker examinationDate;
 
     private Stage stage;
 
     private BooleanProperty dataNotConsistent;
     private Customer customer;
+    private String currentDateTime = DateTimeUtils.localDateTimeToStringHuman(LocalDateTime.now());
 
     private Examination createExaminationData() {
         Examination examination = new Examination();
         examination.setCustomerId(customer.getId());
         examination.setDoctor(doctorName.getText());
         examination.setSummary(examinationSummary.getText());
-        examination.setDate(examinationDate.getValue().toString());
+        examination.setDate(currentDateTime);
+        examination.setNextExaminationDateTime(examinationDate.getStringValue());
         return examination;
     }
 
     private void validateData() {
         boolean validationResult = doctorName.getText().trim().isEmpty()
                 || examinationSummary.getText().trim().isEmpty()
-                || examinationDate.getValue().toString().trim().isEmpty();
+                || examinationDate.getStringValue().isEmpty();
 
         dataNotConsistent.setValue(validationResult);
     }
 
     private void initializeControls() {
-        examinationDate.setValue(LocalDate.now());
         doctorName.textProperty().addListener(e -> validateData());
         examinationSummary.textProperty().addListener(e -> validateData());
     }
@@ -71,12 +75,16 @@ public class NewExaminationController implements Initializable {
         double buttonHeight = 30;
         double buttonWidth = 70;
 
+        examinationDate = new CustomDateTimePicker();
+        examinationDate.setAllowEmpty(true);
+        examinationDate.setValue(currentDateTime);
+
         addButton = SmartButtonBuilder.getDefaultBlueButtonBuilder().setText("ADD ").setHeight(buttonHeight)
                 .setWidth(buttonWidth).setButtonDisabled(true).build();
         addButton.setFocusTraversable(true);
 
         addButton.setOnAction(event -> {
-            if (Main.getMainController().getDbManager().addExamination(createExaminationData())) {
+            if (Main.getMainController().getDbManager().addExaminationRecord(createExaminationData())) {
                 Main.getMainController().refreshCustomerTable();
                 Main.getMainController().resetWindowState();
                 stage.close();
@@ -94,6 +102,7 @@ public class NewExaminationController implements Initializable {
         HBox.setMargin(cancelButton, new Insets(20, 0, 0, 445));
         HBox.setMargin(addButton, new Insets(20, 0, 0, 10));
 
+        nextExaminationDateTime.getChildren().add(examinationDate);
         initializeControls();
 
         dataNotConsistent = new SimpleBooleanProperty(true);

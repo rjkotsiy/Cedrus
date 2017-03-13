@@ -17,6 +17,18 @@ public class Customer {
     private String gender;
     private String doctor;
     private String direction;
+    private String nextExaminationDateTime;
+
+    public String getNextExaminationDateTime() {
+        if (nextExaminationDateTime == null || nextExaminationDateTime.isEmpty()) {
+            nextExaminationDateTime = "N/A";
+        }
+        return nextExaminationDateTime;
+    }
+
+    public void setNextExaminationDateTime(String nextExaminationDateTime) {
+        this.nextExaminationDateTime = nextExaminationDateTime;
+    }
 
     public Integer getId() {
         return id;

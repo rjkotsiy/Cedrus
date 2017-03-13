@@ -26,7 +26,7 @@ public class NumberField extends TextField {
     public NumberField() {
         super();
         this.setAlignment(Pos.CENTER);
-        getStylesheets().add(CustomTextField.class.getResource("styles/custom-text-field.css").toExternalForm());
+        getStylesheets().add(CustomTextField.class.getResource("../styles/css/custom-text-field.css").toExternalForm());
         addListeners();
     }
 

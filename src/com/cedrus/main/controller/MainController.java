@@ -76,6 +76,9 @@ public class MainController implements Initializable {
 
     @FXML
     private HBox customerProfileBottomBar;
+
+    @FXML
+    private Label nextExaminationDateTime;
     //</editor-fold>
 
     private DataBaseManager dbManager;
@@ -117,9 +120,9 @@ public class MainController implements Initializable {
 
         examinationHistory = SmartButtonBuilder
                 .getLinkButtonBuilder()
-                .setText("Examination History...")
+                .setText("History...")
                 .setHeight(20)
-                .setWidth(170)
+                .setWidth(70)
                 .build();
 
         updateCustomerInfo = SmartButtonBuilder
@@ -300,6 +303,7 @@ public class MainController implements Initializable {
             direction.setText(customer.getDirection());
 
             dataNotValidated.setValue(true);
+            nextExaminationDateTime.setText("Next assigned date time: " + customer.getNextExaminationDateTime());
 
             updateCustomerInfo.disableProperty().bind(dataNotValidated);
         }

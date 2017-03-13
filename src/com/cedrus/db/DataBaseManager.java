@@ -51,7 +51,7 @@ public class DataBaseManager {
 
     public List<Customer> getCustomerList() {
         ResultSet resultSet = null;
-        String query = "select * from cedrus_customer_data";
+        String query = "select * from customer_profile";
         List<Customer> customers = new ArrayList<>();
         try {
             if (connection != null) {
@@ -67,6 +67,7 @@ public class DataBaseManager {
                     String registrationDate = resultSet.getString(resultSet.findColumn("registration_date"));
                     String doctor = resultSet.getString(resultSet.findColumn("doctor"));
                     String direction = resultSet.getString(resultSet.findColumn("direction"));
+                    String nextExaminationDateTime = resultSet.getString(resultSet.findColumn("next_examination_datetime"));
 
                     Customer customer = new Customer();
                     customer.setId(Integer.parseInt(id));
@@ -79,7 +80,7 @@ public class DataBaseManager {
                     customer.setRegistration_date(registrationDate);
                     customer.setDoctor(doctor);
                     customer.setDirection(direction);
-
+                    customer.setNextExaminationDateTime(nextExaminationDateTime);
 
                     customers.add(customer);
                 }
@@ -97,7 +98,7 @@ public class DataBaseManager {
     }
 
     public boolean deleteCustomer(Customer customer) {
-        String query = "DELETE FROM `mydb`.`cedrus_customer_data` WHERE `customer_id`=" + customer.getId() + ";";
+        String query = "DELETE FROM `mydb`.`customer_profile` WHERE `customer_id`=" + customer.getId() + ";";
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -110,7 +111,7 @@ public class DataBaseManager {
     }
 
     public boolean updateCustomer(Customer customer) {
-        String query = "UPDATE `mydb`.`cedrus_customer_data` "
+        String query = "UPDATE `mydb`.`customer_profile` "
                 + " SET `firstname`='" + customer.getFirstName() + "', "
                 + "`lastname`='" + customer.getLastName() + "', "
                 + "`address`='" + customer.getAddress() + "', "
@@ -131,7 +132,7 @@ public class DataBaseManager {
 
     public boolean addCustomer(Customer customer) {
 
-        String query = "INSERT INTO `mydb`.`cedrus_customer_data` (`firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`, `doctor`, `direction`) ";
+        String query = "INSERT INTO `mydb`.`customer_profile` (`firstname`, `lastname`, `address`, `birthday`, `gender`, `phone`, `registration_date`, `doctor`, `direction`) ";
 
         query += "VALUES "
                 + "('" + customer.getFirstName() + "',"
@@ -155,16 +156,22 @@ public class DataBaseManager {
         return true;
     }
 
-    public boolean addExamination(Examination examinationData) {
-        String query = "INSERT INTO `mydb`.`customer_profile` (`customer_id`, `examination_date`, `doctor`, `summary_report`) ";
+    public boolean addExaminationRecord(Examination examinationData) {
+        String query = "INSERT INTO `mydb`.`customer_record` (`customer_id`, `record_datetime`, `doctor`, `summary_report`) ";
         query += "VALUES "
                 + "('" + examinationData.getCustomerId() + "',"
                 + "'" + examinationData.getDate() + "',"
                 + "'" + examinationData.getDoctor() + "',"
                 + "'" + examinationData.getSummary() + "')";
+
+        String updQuery = "UPDATE `mydb`.`customer_profile` "
+                + " SET `next_examination_datetime`='" + examinationData.getNextExaminationDateTime() + "'"
+                + " WHERE `customer_id`=" + examinationData.getCustomerId() + ";";
+
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
+            statement.executeUpdate(updQuery);
         } catch (SQLException e) {
             logger.error(e.getMessage());
             return false;

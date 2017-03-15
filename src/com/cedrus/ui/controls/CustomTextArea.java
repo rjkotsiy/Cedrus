@@ -45,7 +45,7 @@ public class CustomTextArea extends TextArea {
 	}
 
 	private void applyStyle() {
-		this.getStylesheets().add(CustomTextField.class.getResource("styles/custom-text-area.css").toExternalForm());
+		this.getStylesheets().add(CustomTextField.class.getResource("../styles/css/custom-text-area.css").toExternalForm());
 	}
 
 	private void initListeners() {

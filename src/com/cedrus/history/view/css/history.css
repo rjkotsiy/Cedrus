@@ -1,0 +1,125 @@
+
+.non-edilist-datepicker > .arrow-button {
+    -fx-padding: 0px;
+}
+
+.non-edilist-datepicker > .arrow-button > .arrow {
+    -fx-padding: 0px;
+}
+
+.non-edilist-datepicker > .date-picker-display-node {
+    -fx-background-insets: 1 1 1 1;
+}
+
+.date-picker .text-field {
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 6.0, 0, 0, 0;
+    -fx-background-color: rgba(240.0, 240.0, 240.0, 0.5);
+    -fx-border-color: rgba(240.0, 240.0, 240.0, 0.5);
+}
+
+.date-picker .text-field:hover {
+    -fx-background-color: transparent, white, rgba(13.0, 119.0, 191.0, 0.1), transparent;
+    -fx-border-color: rgba(240.0, 240.0, 240.0, 0.5);
+
+}
+
+.date-picker .text-field:focused {
+	-fx-border-color: rgba(240.0, 240.0, 240.0, 0.5);
+
+    -fx-background-color:
+        -fx-focus-color,
+        -fx-control-inner-background,
+        rgba(255.0, 255.0, 255.0, 0.1),
+        rgba(255.0, 255.0, 255.0, 0.1);
+    -fx-background-insets: -0.2, 1.0, -1.0, 1.0;
+ }
+.d .c:hover {
+    -fx-cursor:hand;
+}
+
+
+.background {
+    -fx-background-color: #ffffff;
+}
+
+*.scroll-bar:horizontal *.increment-button,
+*.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+*.scroll-bar:horizontal *.increment-arrow, 
+*.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+ 
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+ 
+/* The increment and decrement button CSS class of scrollbar */
+.increment-button .decrement-button {
+    -fx-background-color:transparent;
+    -fx-border-color:derive(gray,80%);
+}
+
+ 
+
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:vertical .track{
+     -fx-background-color: #b8c7d3;
+     -fx-border-color:#b8c7d3;
+     -fx-background-radius: 0em;
+}
+
+ 
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #b8c7d3;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0em;
+}
+
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+ 
+
+/* The increment and decrement button CSS class of scrollbar */ 
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0 10 0 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow
+ {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #b8c7d3;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}

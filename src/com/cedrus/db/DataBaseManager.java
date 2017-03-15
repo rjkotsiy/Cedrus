@@ -51,6 +51,38 @@ public class DataBaseManager {
         }
     }
 
+    public List<Examination> getExaminations(String customerId) {
+        ResultSet resultSet = null;
+        String query = "select * from customer_record where customer_id=" + customerId;
+        List<Examination> records = new ArrayList<>();
+        try {
+            if (connection != null) {
+                resultSet = statement.executeQuery(query);
+                while (resultSet.next()) {
+                    String datetime = resultSet.getString(resultSet.findColumn("record_datetime"));
+                    String doctor = resultSet.getString(resultSet.findColumn("doctor"));
+                    String summary = resultSet.getString(resultSet.findColumn("summary_report"));
+
+                    Examination record = new Examination();
+                    record.setDate(datetime);
+                    record.setDoctor(doctor);
+                    record.setSummary(summary);
+
+                    records.add(record);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
+            }
+        }
+        return records;
+    }
+
     public List<Customer> getCustomerList() {
         ResultSet resultSet = null;
         String query = "select * from customer_profile";

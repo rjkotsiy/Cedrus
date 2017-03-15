@@ -31,7 +31,7 @@ public class NewExaminationWindow {
 	public void createWindow() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(NewExaminationWindow.class.getResource("../view/NewExamination.fxml"));
+			loader.setLocation(NewExaminationWindow.class.getResource("../view/newexamination.fxml"));
 			AnchorPane rootPane = loader.load();
 			controller = loader.getController();
 			Scene scene = new Scene(rootPane);

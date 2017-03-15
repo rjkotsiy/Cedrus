@@ -3,6 +3,7 @@ package com.cedrus.main.controller;
 import com.cedrus.customer.loader.NewCustomerWindow;
 import com.cedrus.db.DataBaseManager;
 import com.cedrus.examination.loader.NewExaminationWindow;
+import com.cedrus.history.loader.HistoryWindow;
 import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
 import com.cedrus.ui.controls.CustomTextField;
@@ -124,6 +125,11 @@ public class MainController implements Initializable {
                 .setHeight(20)
                 .setWidth(70)
                 .build();
+
+        examinationHistory.setOnAction(event -> {
+            HistoryWindow historyWindow = new HistoryWindow();
+            historyWindow.showWindow(currentCustomerModel);
+        });
 
         updateCustomerInfo = SmartButtonBuilder
                 .getDefaultBlueButtonBuilder()

@@ -1,8 +1,9 @@
-package com.cedrus.customer.loader;
+package com.cedrus.history.loader;
 
 import com.cedrus.Main;
-import com.cedrus.customer.controller.NewCustomerController;
+import com.cedrus.history.controller.HistoryController;
 import com.cedrus.logger.ApplicationLogger;
+import com.cedrus.models.Customer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,15 +14,15 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class NewCustomerWindow {
+public class HistoryWindow {
 
-	private static final ApplicationLogger LOGGER = new ApplicationLogger(NewCustomerWindow.class);
+	private static final ApplicationLogger LOGGER = new ApplicationLogger(HistoryWindow.class);
 
 	private Stage stage;
-	private NewCustomerController controller;
+	private HistoryController controller;
 
 	//<editor-fold desc="Class Constructor">
-	public NewCustomerWindow() {
+	public HistoryWindow() {
 		stage = null;
 		createWindow();
 	}
@@ -30,18 +31,18 @@ public class NewCustomerWindow {
 	public void createWindow() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(NewCustomerWindow.class.getResource("../view/newcustomer.fxml"));
+			loader.setLocation(HistoryWindow.class.getResource("../view/history.fxml"));
 			AnchorPane rootPane = loader.load();
 			controller = loader.getController();
 			Scene scene = new Scene(rootPane);
 			scene.setFill(Color.TRANSPARENT);
 			stage = new Stage(StageStyle.DECORATED);
 			stage.setScene(scene);
-			stage.setWidth(637);
-			stage.setHeight(586);
+			stage.setWidth(645);
+			stage.setHeight(415+55);
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(Main.getMainStage());
-			stage.setTitle("Create Patient Profile");
+			stage.setTitle("History records");
 			stage.setResizable(false);
 			controller.setStage(stage);
 		} catch (IOException e) {
@@ -50,7 +51,8 @@ public class NewCustomerWindow {
 		}
 	}
 
-	public void showWindow() {
+	public void showWindow(Customer customer) {
+		controller.setModel(customer);
 		stage.showAndWait();
 	}	
 }

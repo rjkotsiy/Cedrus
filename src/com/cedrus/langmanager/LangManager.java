@@ -42,6 +42,5 @@ public class LangManager {
             return SEARCH_TEXT_UA;
         }
         return "";
-
     }
 }

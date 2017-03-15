@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import com.cedrus.ui.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane fx:id="mainAnchorPane" maxHeight="658.0" maxWidth="730.0" minHeight="568.0" minWidth="724.0" prefHeight="570.0" prefWidth="725.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedrus.main.controller.MainController">
    <children>
       <TableView fx:id="customersTable" layoutX="12.0" layoutY="60.0" prefHeight="477.0" prefWidth="302.0" stylesheets="@css/customertable.css">
@@ -43,19 +35,19 @@
       </HBox>
       <AnchorPane fx:id="profileView" layoutX="328.0" layoutY="68.0" prefHeight="469.0" prefWidth="396.0">
          <children>
-            <TextField fx:id="firstName" layoutX="21.0" layoutY="21.0" prefHeight="29.0" prefWidth="352.0" />
-            <TextField fx:id="secondName" layoutX="20.0" layoutY="60.0" prefHeight="29.0" prefWidth="352.0" />
-            <TextField fx:id="phone" layoutX="20.0" layoutY="98.0" prefHeight="29.0" prefWidth="352.0" />
-            <TextField fx:id="address" layoutX="20.0" layoutY="136.0" prefHeight="29.0" prefWidth="352.0" />
-            <DatePicker fx:id="birthday" editable="false" layoutX="20.0" layoutY="174.0" prefHeight="29.0" prefWidth="138.0" promptText="-- Please Select  --" />
+            <CustomTextField fx:id="firstName" layoutX="21.0" layoutY="21.0" prefHeight="29.0" prefWidth="352.0" />
+            <CustomTextField fx:id="secondName" layoutX="20.0" layoutY="60.0" prefHeight="29.0" prefWidth="352.0" />
+            <CustomTextField fx:id="phone" layoutX="20.0" layoutY="98.0" prefHeight="29.0" prefWidth="352.0" />
+            <CustomTextField fx:id="address" layoutX="20.0" layoutY="136.0" prefHeight="29.0" prefWidth="352.0" />
+            <CustomDatePicker fx:id="birthday" layoutX="20.0" layoutY="174.0" prefHeight="29.0" prefWidth="138.0"  />
             <Label focusTraversable="false" layoutX="170.0" layoutY="182.0" text="Gender" textFill="#4d4d4d">
                <font>
                   <Font name="Tahoma" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="doctor" layoutX="20.0" layoutY="214.0" prefHeight="29.0" prefWidth="352.0" />
-            <TextArea fx:id="direction" layoutX="20.0" layoutY="255.0" prefHeight="164.0" prefWidth="352.0" />
-            <ComboBox fx:id="gender" layoutX="224.0" layoutY="175.0" prefHeight="29.0" prefWidth="148.0" promptText=" -- Please Select --" />
+            <CustomTextField fx:id="doctor" layoutX="20.0" layoutY="214.0" prefHeight="29.0" prefWidth="352.0" />
+            <CustomTextArea fx:id="direction" layoutX="20.0" layoutY="255.0" prefHeight="164.0" prefWidth="352.0" />
+            <CustomComboBox fx:id="gender" layoutX="224.0" layoutY="175.0" prefHeight="29.0" prefWidth="148.0" promptText=" -- Please Select --" />
             <HBox fx:id="customerProfileBottomBar" layoutX="22.0" layoutY="429.0" prefHeight="29.0" prefWidth="352.0">
                <padding>
                   <Insets left="3.0" top="6.0" />

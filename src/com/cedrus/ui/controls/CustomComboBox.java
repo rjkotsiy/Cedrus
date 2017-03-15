@@ -12,7 +12,7 @@ public class CustomComboBox<T> extends ComboBox<T> {
 
 	public CustomComboBox() {
 		super();
-		getStylesheets().add(CustomComboBox.class.getResource("styles/custom-combo-box.css").toExternalForm());
+		getStylesheets().add(CustomComboBox.class.getResource("../styles/css/custom-combo-box.css").toExternalForm());
 		addListeners();
 	}
 

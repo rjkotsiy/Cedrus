@@ -183,6 +183,7 @@ public class DataBaseManager {
                 + "`lastname`='" + customer.getLastName() + "', "
                 + "`address`='" + customer.getAddress() + "', "
                 + "`phone`='" + customer.getPhone() + "', "
+                + "`birthday`='" + customer.getBirthday() + "', "
                 + "`gender`='" + customer.getGender() + "', "
                 + "`doctor`='" + customer.getDoctor() + "', "
                 + "`direction`='" + customer.getDirection() + "'"

@@ -6,9 +6,7 @@ import com.cedrus.examination.loader.NewExaminationWindow;
 import com.cedrus.history.loader.HistoryWindow;
 import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
-import com.cedrus.ui.controls.CustomTextField;
-import com.cedrus.ui.controls.SmartButton;
-import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.ui.controls.*;
 import com.cedrus.ui.messagebox.controller.MessageBoxController;
 import com.cedrus.ui.messagebox.loader.MessageBoxWindow;
 import com.cedrus.ui.resources.ResourceManager;
@@ -37,28 +35,28 @@ public class MainController implements Initializable {
     private AnchorPane profileView;
 
     @FXML
-    private TextField firstName;
+    private CustomTextField firstName;
 
     @FXML
-    private TextField secondName;
+    private CustomTextField secondName;
 
     @FXML
-    private TextField phone;
+    private CustomTextField phone;
 
     @FXML
-    private TextField address;
+    private CustomTextField address;
 
     @FXML
-    private DatePicker birthday;
+    private CustomDatePicker birthday;
 
     @FXML
-    private ComboBox<String> gender;
+    private CustomComboBox<String> gender;
 
     @FXML
-    private TextField doctor;
+    private CustomTextField doctor;
 
     @FXML
-    private TextArea direction;
+    private CustomTextArea direction;
 
     @FXML
     private TableView<Customer> customersTable;
@@ -248,7 +246,7 @@ public class MainController implements Initializable {
         secondName.textProperty().addListener(e -> validateData());
         phone.textProperty().addListener(e -> validateData());
         address.textProperty().addListener(e -> validateData());
-        birthday.valueProperty().addListener(e -> validateData());
+        birthday.dateProperty().addListener(e -> validateData());
         direction.textProperty().addListener(e -> validateData());
         gender.valueProperty().addListener(e -> validateData());
     }
@@ -273,7 +271,7 @@ public class MainController implements Initializable {
                 || address.getText().trim().isEmpty()
                 || doctor.getText().trim().isEmpty()
                 || direction.getText().trim().isEmpty()
-                || birthday.getValue().toString().trim().isEmpty()
+                || birthday.getStringValue().toString().trim().isEmpty()
                 || gender.getValue() == null;
 
         if (emptyData) {
@@ -287,7 +285,7 @@ public class MainController implements Initializable {
                         || (!currentCustomerModel.getAddress().equals(address.getText()))
                         || (!currentCustomerModel.getDoctor().equals(doctor.getText()))
                         || (!currentCustomerModel.getDirection().equals(direction.getText()))
-                        || (!birthday.getValue().toString().equals(currentCustomerModel.getBirthday()))
+                        || (!birthday.getStringValue().toString().equals(currentCustomerModel.getBirthday()))
                         || (!gender.getValue().toString().equals(currentCustomerModel.getGender()));
 
         dataNotValidated.setValue(!validationResult);
@@ -383,7 +381,7 @@ public class MainController implements Initializable {
         customer.setFirstName(firstName.getText());
         customer.setLastName(secondName.getText());
         customer.setAddress(address.getText());
-        customer.setBirthday(birthday.getValue().toString());
+        customer.setBirthday(birthday.getStringValue());
         customer.setGender(gender.getValue());
         customer.setPhone(phone.getText());
         customer.setDoctor(doctor.getText());
@@ -399,7 +397,7 @@ public class MainController implements Initializable {
         secondName.clear();
         phone.clear();
         address.clear();
-        birthday.setValue(null);
+        birthday.dateProperty().setValue(null);
         gender.setValue(null);
         doctor.clear();
         direction.clear();

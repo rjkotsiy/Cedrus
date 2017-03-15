@@ -3,8 +3,7 @@ package com.cedrus.customer.controller;
 import com.cedrus.Main;
 import com.cedrus.langmanager.LangManager;
 import com.cedrus.models.Customer;
-import com.cedrus.ui.controls.SmartButton;
-import com.cedrus.ui.controls.SmartButtonBuilder;
+import com.cedrus.ui.controls.*;
 import com.cedrus.ui.resources.ResourceManager;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -30,28 +29,28 @@ public class NewCustomerController implements Initializable {
     private HBox bottomToolbar;
 
     @FXML
-    private TextField firstName;
+    private CustomTextField firstName;
 
     @FXML
-    private TextField secondName;
+    private CustomTextField secondName;
 
     @FXML
-    private TextField phone;
+    private CustomTextField phone;
 
     @FXML
-    private TextField address;
+    private CustomTextField address;
 
     @FXML
-    private DatePicker birthday;
+    private CustomDatePicker birthday;
 
     @FXML
-    private ComboBox<String> gender;
+    private CustomComboBox<String> gender;
 
     @FXML
-    private TextField doctor;
+    private CustomTextField doctor;
 
     @FXML
-    private TextArea direction;
+    private CustomTextArea direction;
     //</editor-fold>
 
     private SmartButton addButton;
@@ -65,7 +64,7 @@ public class NewCustomerController implements Initializable {
         customer.setFirstName(firstName.getText());
         customer.setLastName(secondName.getText());
         customer.setAddress(address.getText());
-        customer.setBirthday(birthday.getValue().toString());
+        customer.setBirthday(birthday.getStringValue());
         customer.setGender(gender.getValue());
         customer.setPhone(phone.getText());
         customer.setRegistration_date(LocalDate.now().toString());
@@ -81,7 +80,7 @@ public class NewCustomerController implements Initializable {
                 || address.getText().trim().isEmpty()
                 || doctor.getText().trim().isEmpty()
                 || direction.getText().trim().isEmpty()
-                || birthday.getValue().toString().trim().isEmpty()
+                || birthday.getStringValue().trim().isEmpty()
                 || gender.getValue() == null;
 
         dataNotCostistent.setValue(validationResult);
@@ -98,7 +97,7 @@ public class NewCustomerController implements Initializable {
         secondName.textProperty().addListener(e -> validateData());
         phone.textProperty().addListener(e -> validateData());
         address.textProperty().addListener(e -> validateData());
-        birthday.valueProperty().addListener(e -> validateData());
+        birthday.dateProperty().addListener(e -> validateData());
         direction.textProperty().addListener(e -> validateData());
 
     }

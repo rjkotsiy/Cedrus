@@ -7,8 +7,10 @@ import com.cedrus.models.Examination;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,29 @@ public class DataBaseManager {
         }
     }
 
+    public Integer getAttachmentId(Integer recordId) {
+        ResultSet resultSet = null;
+        String query = "select * from customer_attachment where record_id=" + recordId;
+        Integer attachmentId = 0;
+        try {
+            if (connection != null) {
+                resultSet = statement.executeQuery(query);
+                if (resultSet.next()) {
+                    attachmentId = resultSet.getInt(resultSet.findColumn("attachment_id"));
+                }
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
+            }
+        }
+        return attachmentId;
+    }
+
     public List<Examination> getExaminations(String customerId) {
         ResultSet resultSet = null;
         String query = "select * from customer_record where customer_id=" + customerId;
@@ -59,17 +84,25 @@ public class DataBaseManager {
             if (connection != null) {
                 resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
+                    Integer recordId = resultSet.getInt(resultSet.findColumn("record_id"));
                     String datetime = resultSet.getString(resultSet.findColumn("record_datetime"));
                     String doctor = resultSet.getString(resultSet.findColumn("doctor"));
                     String summary = resultSet.getString(resultSet.findColumn("summary_report"));
-
                     Examination record = new Examination();
                     record.setDate(datetime);
                     record.setDoctor(doctor);
                     record.setSummary(summary);
-
+                    //record.setAttachmentId(attachId);
+                    record.setRecordId(recordId);
                     records.add(record);
                 }
+
+                if (!records.isEmpty()) {
+                    records.forEach(record -> {
+                        record.setAttachmentId(getAttachmentId(record.getRecordId()));
+                    });
+                }
+
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
@@ -244,6 +277,40 @@ public class DataBaseManager {
             return false;
         }
         return true;
+    }
+
+    public String getAttachmentFile(Integer attachmentId) {
+        final int BUFFER_SIZE = 4096;
+        String fileName = null;
+        try {
+            String sql = "SELECT * FROM customer_attachment WHERE attachment_id=?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, attachmentId);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Blob blob = result.getBlob("attached_file");
+                fileName = result.getString("filename");
+                InputStream inputStream = blob.getBinaryStream();
+                OutputStream outputStream = new FileOutputStream(System.getProperty("user.dir") + "/temp/" + fileName);
+
+                int bytesRead = -1;
+                byte[] buffer = new byte[BUFFER_SIZE];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                inputStream.close();
+                outputStream.close();
+                System.out.println("File saved");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return fileName;
     }
 
 }

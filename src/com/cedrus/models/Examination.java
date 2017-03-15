@@ -5,12 +5,30 @@ import java.util.List;
 
 public class Examination {
 
+    private Integer recordId;
     private Integer customerId;
     private String doctor;
     private String summary;
     private String date;
     private String nextExaminationDateTime;
     private List<File> attachments;
+    private Integer attachmentId;
+
+    public Integer getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Integer recordId) {
+        this.recordId = recordId;
+    }
+
+    public Integer getAttachmentId() {
+        return attachmentId;
+    }
+
+    public void setAttachmentId(Integer attachmentId) {
+        this.attachmentId = attachmentId;
+    }
 
     public List<File> getAttachments() {
         return attachments;

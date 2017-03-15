@@ -16,6 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,7 +56,20 @@ public class HistoryController implements Initializable {
                 .setHeight(19)
                 .setPadding(new Insets(7, 0, 0, 0)).build();
 
-        attachedLinkButton.setDisable(record.getAttachments() == null);
+        attachedLinkButton.setDisable(record.getAttachmentId() == 0);
+        if (record.getAttachmentId() != 0) {
+            attachedLinkButton.setOnAction(event -> {
+                String fileName = Main.getMainController().getDbManager().getAttachmentFile(record.getAttachmentId());
+                if (fileName != null) {
+                    try {
+                        File file = new File(System.getProperty("user.dir") + "/temp/"+ fileName);
+                        Desktop.getDesktop().open(file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
         topInfoBar.getChildren().addAll(recordDate, doctorName, attachedLinkButton);
         HBox.setMargin(doctorName, new Insets(0, 0, 0, 20));
@@ -94,7 +110,6 @@ public class HistoryController implements Initializable {
         bottomToolbar.getChildren().add(closeButton);
 
         HBox.setMargin(closeButton, new Insets(20, 0, 0, 550));
-
 
     }
 
